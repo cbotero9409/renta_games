@@ -1,1 +1,29 @@
 // Specific CSS for your home-page
+body{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background: url(https://forums.pokemmo.com/uploads/monthly_2021_12/22b22287602523.5dbd29081561d.gif.12d41b841e6e1356e493e1b376ded418.gif);
+  background-repeat: no-repeat;
+ background-size: cover;
+}
+
+  .banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: fixed;
+    padding: 150px 0;
+  }
+
+  .banner h1 {
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .banner p {
+    font-size: 20px;
+    color: white;
+    opacity: .7;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
