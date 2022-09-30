@@ -8,5 +8,6 @@
   <% unless game.new_record? %>
   <%= f.input :available, as: :boolean, class: "form-check-input" %>
   <% end %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit "Save game", class: "btn btn-primary" %>
 <% end %>
