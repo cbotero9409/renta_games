@@ -1,0 +1,13 @@
+<% title = game.new_record? ? 'New game' : 'Edit game' %>
+<h1><%= title %></h1>
+<%= simple_form_for(game) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.input :name, label: false, class: "form-control" %>
+  </div>
+  <% unless game.new_record? %>
+  <%= f.input :available, as: :boolean, class: "form-check-input" %>
+  <% end %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit "Save game", class: "btn btn-primary" %>
+<% end %>
