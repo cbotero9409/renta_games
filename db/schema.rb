@@ -34,17 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_005504) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.date "date"
-    t.integer "days"
-    t.bigint "user_id", null: false
-    t.bigint "game_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_orders_on_game_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
