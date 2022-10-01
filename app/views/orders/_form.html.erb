@@ -1,0 +1,4 @@
+<%= simple_form_for [game, order], url: create_order_path(game) do |f| %>
+  <%= f.input :days, as: :select, collection: collection, required: true %>
+  <%= f.submit "Save order", data: {confirm: "Confirm"}, class: "btn btn-primary" %>
+<% end %>

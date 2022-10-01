@@ -7,9 +7,10 @@
    <div class="col-6">
     <h2><strong><%= @game.name.capitalize %></strong></h2>
     <p><%= desc %></p>
+    <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
   </div>
 </div>
 
-<div class="d-grid gap-2">
+<%# <div class="d-grid gap-2">
   <a class="btn btn-primary">Alquilar</a>
-</div>
+</div> %>

@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[show edit update]
+  before_action :set_game, only: %i[show edit update create_order]
 
   def index
     @games = Game.all
@@ -29,12 +29,26 @@ class GamesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @order = Order.new
+    @collection = [7, 15, 30, 60, 90, 180]
+  end
 
   def user_games
     @user = User.find(params[:id])
     @games = @user.games
     @title = @user.name || @user.email
+  end
+
+  def create_order
+    @order = Order.new(order_params)
+    @order.game = @game
+    @order.user = current_user
+    if @order.save
+      redirect_to game_path(@game)
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
@@ -45,5 +59,9 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find(params[:id])
+  end
+
+  def order_params
+    params.require(:order).permit(:days)
   end
 end
