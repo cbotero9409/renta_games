@@ -1,17 +1,17 @@
 
-<div class="banner">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">>
   <div class="container">
     <h1>RENTA GAMES!</h1>
     <p>Aqui puedes rentar todos los videojuegos que quiera para cualquier tipo de consola</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
+    <a class="btn btn-primary" href="#">Apply now</a>
   </div>
 </div>
 
-
-<% @games.each do |game| %>
-  <div class="cards">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-       <%= link_to game.name, game_path(game)%>
-    </div>
-  </div>
-<%end %>
+<div class="cards my-3">
+  <% @games.each do |game| %>
+    <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img, height: 300, crop: :fill %>')">
+        <%= link_to game.name, game_path(game)%>
+      </div>
+  <%end %>
+</div>
