@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :games, only: [ :index, :show, :new, :create, :edit, :update]
+  resources :games, except: :destroy
+
+  get "users/:id/games", to: "games#user_games"
 end
