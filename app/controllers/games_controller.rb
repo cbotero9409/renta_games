@@ -29,8 +29,10 @@ class GamesController < ApplicationController
     end
   end
 
-  def show
+  def show; end
 
+  def user_games
+    @games = User.find(params[:id]).games
   end
 
   private
