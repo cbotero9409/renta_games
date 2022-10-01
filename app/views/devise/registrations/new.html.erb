@@ -16,10 +16,12 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+                <%= f.label :role %>
+    <%= f.collection_radio_buttons :role, [['customer', 'Customer'], ['provider', 'Provider ']], :first, :last, checked: ['customer', true] %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: "btn btn-primary mb-3"%>
   </div>
 <% end %>
 

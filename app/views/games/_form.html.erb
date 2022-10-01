@@ -5,9 +5,11 @@
     <%= f.label :name %>
     <%= f.input :name, label: false, class: "form-control" %>
   </div>
-  <% unless game.new_record? %>
   <%= f.input :available, as: :boolean, class: "form-check-input" %>
-  <% end %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.input :description, as: :text, label: false, class: "form-control" %>
+  </div>
   <%= f.input :photo, as: :file %>
   <%= f.submit "Save game", class: "btn btn-primary" %>
 <% end %>
