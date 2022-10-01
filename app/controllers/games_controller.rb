@@ -32,7 +32,9 @@ class GamesController < ApplicationController
   def show; end
 
   def user_games
-    @games = User.find(params[:id]).games
+    @user = User.find(params[:id])
+    @games = @user.games
+    @title = @user.name || @user.email
   end
 
   private
