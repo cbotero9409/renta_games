@@ -14,8 +14,12 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <div class="container">
-      <%= yield %>
+    <% unless current_page?(root_url)  %>
+      <div class="container p-3">
+    <% else  %>
+      <div>
+    <% end %>
+    <%= yield %>
     </div>
   </body>
 </html>

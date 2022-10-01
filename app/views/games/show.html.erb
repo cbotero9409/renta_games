@@ -1,0 +1,13 @@
+<div class="row my-3 p-3">
+  <div class="col-6">
+    <%= cl_image_tag @game.photo.key, width: 500, crop: :fill %>
+  </div>
+   <div class="col-6">
+    <h2><strong></strong><%= @game.name.capitalize %></strong></h2>
+    <p><%= @game.description %></p>
+  </div>
+</div>
+
+<div class="d-grid gap-2">
+  <a class="btn btn-primary">Alquilar</a>
+</div>

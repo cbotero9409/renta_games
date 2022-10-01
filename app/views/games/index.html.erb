@@ -7,11 +7,13 @@
   </div>
 </div>
 
-<div class="cards my-3">
-  <% @games.each do |game| %>
-    <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img, height: 300, crop: :fill %>')">
-        <%= link_to game.name, game_path(game)%>
-      </div>
-  <%end %>
+<div class="container">
+  <div class="cards my-3">
+    <% @games.each do |game| %>
+      <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img %>')">
+          <%= link_to game.name, game_path(game)%>
+        </div>
+    <%end %>
+  </div>
 </div>
