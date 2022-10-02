@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   root to: "games#index"
   resources :games, except: :destroy
-  get "users/:id/games", to: "games#user_games"
+  get "users/:id/games", to: "games#user_games", as: :user_games
 
   post "games/:id/order", to: "games#create_order", as: :create_order
   get "orders", to: "orders#index", as: :orders
-  get "orders/:id", to: "orders#show", as: :order
 end

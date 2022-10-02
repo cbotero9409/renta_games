@@ -2,18 +2,42 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">>
   <div class="container">
     <h1>RENTA GAMES!</h1>
-    <p>Aqui puedes rentar todos los videojuegos que quiera para cualquier tipo de consola</p>
-    <a class="btn btn-primary" href="#">Apply now</a>
+    <p>Here you can rent your videogames for any console!</p>
+    <%= mail_to "cbotero2709@gmail.com", "Contact Us", class: "btn btn-primary" %>
   </div>
 </div>
 
+<% @games.each do |game| %>
+  <% ava = true %>
+  <% game.orders.each do |order| %>
+    <% endd = order.created_at + (order.days * 86_400) %>
+    <% if endd >= Time.now %>
+      <% ava = false %>
+      <% @unavailable << game %>
+      <% break %>
+    <% end %>
+  <% end %>
+  <% @available << game if ava %>
+<% end %>
+
 <div class="container">
   <div class="cards my-3">
-    <% @games.each do |game| %>
-      <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img %>')">
-          <%= link_to game.name, game_path(game)%>
+    <% @available.each do |game| %>
+    <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
+      <%= link_to game_path(game) do %>
+        <div class="card-category opacity-100 %>" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path img %>')">
+          <%= game.name.capitalize %>
         </div>
-    <%end %>
+      <% end %>
+    <% end %>
+
+    <% @unavailable.each do |game| %>
+    <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
+      <%= link_to game_path(game) do %>
+        <div class="card-category opacity-50 %>" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<%= cl_image_path img %>')">
+          <%= game.name.capitalize %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
