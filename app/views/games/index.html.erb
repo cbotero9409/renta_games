@@ -1,7 +1,7 @@
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">>
   <div class="container">
-    <h1>RENTA GAMES!</h1>
+    <h1>RENTA GAMES</h1>
     <p>Here you can rent your videogames for any console!</p>
     <%= mail_to "cbotero2709@gmail.com", "Contact Us", class: "btn btn-primary" %>
   </div>
@@ -25,18 +25,16 @@
     <% @available.each do |game| %>
     <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
       <%= link_to game_path(game) do %>
-        <div class="card-category opacity-100 %>" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path img %>')">
-          <%= game.name.capitalize %>
-        </div>
+        <div class="card-category opacity-100 shadow-lg" style="background-image: url('<%= cl_image_path img %>')"></div>
+        <p class="text-center fs-4 text-secondary"><%= game.name.capitalize %></p>
       <% end %>
     <% end %>
 
     <% @unavailable.each do |game| %>
     <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
       <%= link_to game_path(game) do %>
-        <div class="card-category opacity-50 %>" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<%= cl_image_path img %>')">
-          <%= game.name.capitalize %>
-        </div>
+        <div class="card-category opacity-50 shadow-none" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img %>')"></div>
+        <p class="text-center text-muted"><%= game.name.capitalize %></p>
       <% end %>
     <% end %>
   </div>

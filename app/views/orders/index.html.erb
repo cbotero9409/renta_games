@@ -1,9 +1,9 @@
-<h2>My Orders</h2>
+<h2 class="mb-3">My Orders</h2>
 <% @orders.each do |order| %>
   <% img = order.game.photo.attached? ? order.game.photo.key : "defaultgame" %>
   <% start = order.created_at %>
-  <% endd = start + order.days * 86400 %>
-  <% diff = "#{((endd - start) / 86400).floor} days left" %>
+  <% endd = start + (order.days * 86400) %>
+  <% diff = "#{((endd - Time.now) / 86400).floor} days left" %>
 
   <% if endd <= Time.now %>
     <% opacity = 50 %>
@@ -17,8 +17,8 @@
       <%= cl_image_tag img %>
       <div class="card-product-infos">
         <h2><%= order.game.name.capitalize %></h2>
-        <p>Start date: <%= start.strftime("%d-%b-%Y") %></p>
-        <p>End date: <%= endd.strftime("%d-%b-%Y") %></p>
+        <p class="fs-6 text-body">Start date: <%= start.strftime("%d-%b-%Y") %></p>
+        <p class="fs-6 text-body">End date: <%= endd.strftime("%d-%b-%Y") %></p>
         <p><%= diff %></p>
       </div>
     </div>

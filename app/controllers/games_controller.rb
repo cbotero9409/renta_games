@@ -61,7 +61,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:name, :available, :photo, :description)
+    params.require(:game).permit(:name, :photo, :description)
   end
 
   def set_game
@@ -76,10 +76,9 @@ class GamesController < ApplicationController
     orders.each do |order|
       start = order.created_at
       endd = start + (order.days * 86_400)
-      diff = ((endd - start) / 86_400).floor
+      diff = ((endd - Time.now) / 86_400).floor
       return diff if endd >= Time.now
     end
     return true
   end
-
 end

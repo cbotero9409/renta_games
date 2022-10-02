@@ -5,16 +5,17 @@
     <%= cl_image_tag img, width: 500, crop: :fill %>
   </div>
    <div class="col-6">
-    <h2><strong><%= @game.name.capitalize %></strong><%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %></h2>
-    <p><%= desc %></p>
+    <h2 class="mb-4"><strong><%= @game.name.capitalize %></strong><%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %></h2>
+    <p class="py-3"><%= desc %></p>
     <% if @available == true %>
       <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
+      <div class="text-end mt-5">
     <% else %>
       <div class="text-end mt-5">
         <p>Sorry, Game Available in <strong><%= @available %> days</strong></p>
-        <%= mail_to @game.user.email, "Contact Provider", class: "btn btn-secondary" %>
-        <%= link_to "More Games", user_games_path(@game.user), class: "btn btn-primary" %>
-      </div>
     <% end %>
+      <%= mail_to @game.user.email, "Contact Provider", class: "btn btn-secondary" %>
+      <%= link_to "More Games", user_games_path(@game.user), class: "btn btn-primary" %>
+    </div>
   </div>
 </div>

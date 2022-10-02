@@ -1,23 +1,20 @@
-<h2>Games (<%= @title %>)</h2>
-<div class="container">
-  <div class="cards my-3">
-    <% @games.each do |game| %>
-      <% opacity = 100 %>
-      <% game.orders.each do |order| %>
-        <% endd = order.created_at + (order.days * 86_400) %>
-        <% if endd >= Time.now %>
-          <% opacity = 50 %>
-          <% break %>
-        <% else %>
-          <% opacity = 100 %>
-        <% end %>
+<h2 class="mb-5"><span class="me-4">Games (<%= @title %>) </span> <%= link_to "+ Add Game", new_game_path, class: "btn btn-primary" %></h2>
+<div class="cards my-3">
+  <% @games.each do |game| %>
+    <% opacity = 100 %>
+    <% game.orders.each do |order| %>
+      <% endd = order.created_at + (order.days * 86_400) %>
+      <% if endd >= Time.now %>
+        <% opacity = 50 %>
+        <% break %>
+      <% else %>
+        <% opacity = 100 %>
       <% end %>
-      <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
-      <%= link_to game_path(game) do %>
-        <div class="card-category opacity-<%= opacity %>" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img %>')">
-          <%= game.name %>
-        </div>
-      <% end %>
-    <%end %>
-  </div>
+    <% end %>
+    <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
+    <%= link_to game_path(game) do %>
+      <div class="card-category opacity-<%= opacity %>" style="background-image: url('<%= cl_image_path img %>')"></div>
+      <p class="text-center fs-4 text-secondary"><%= game.name.capitalize %></p>
+    <% end %>
+  <%end %>
 </div>
