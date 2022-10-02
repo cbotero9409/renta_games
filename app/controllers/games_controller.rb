@@ -1,8 +1,11 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[show edit update]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_game, only: %i[show edit update create_order]
 
   def index
-    @games = Game.all
+    @games = Game.all.order(created_at: :desc)
+    @unavailable = []
+    @available = []
   end
 
   def new
@@ -29,19 +32,54 @@ class GamesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    if @game.orders.empty?
+      @order = Order.new
+      @collection = [7, 15, 30, 60, 90, 180]
+      @available = true
+    else
+      @available = game_available(@game.orders)
+    end
+  end
 
   def user_games
-    @games = User.find(params[:id]).games
+    @user = User.find(params[:id])
+    @games = @user.games.order(created_at: :desc)
+    @title = @user.name || @user.email
+  end
+
+  def create_order
+    @order = Order.new(order_params)
+    @order.game = @game
+    @order.user = current_user
+    if @order.save
+      redirect_to orders_path
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
 
   def game_params
-    params.require(:game).permit(:name, :available, :photo, :description)
+    params.require(:game).permit(:name, :photo, :description)
   end
 
   def set_game
     @game = Game.find(params[:id])
+  end
+
+  def order_params
+    params.require(:order).permit(:days)
+  end
+
+  def game_available(orders)
+    orders.each do |order|
+      start = order.created_at
+      endd = start + (order.days * 86_400)
+      diff = ((endd - Time.now) / 86_400).floor
+      return diff if endd >= Time.now
+    end
+    return true
   end
 end

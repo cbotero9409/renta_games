@@ -1,13 +1,21 @@
-<div class="row my-3 p-3">
+<% desc = @game.description ? @game.description : '' %>
+<% img = @game.photo.attached? ? @game.photo.key : "defaultgame" %>
+<div class="row my-2 p-3">
   <div class="col-6">
-    <%= cl_image_tag @game.photo.key, width: 500, crop: :fill %>
+    <%= cl_image_tag img, width: 500, crop: :fill %>
   </div>
    <div class="col-6">
-    <h2><strong></strong><%= @game.name.capitalize %></strong></h2>
-    <p><%= @game.description %></p>
+    <h2 class="mb-4"><strong><%= @game.name.capitalize %></strong><%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %></h2>
+    <p class="py-3"><%= desc %></p>
+    <% if @available == true %>
+      <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
+      <div class="text-end mt-5">
+    <% else %>
+      <div class="text-end mt-5">
+        <p>Sorry, Game Available in <strong><%= @available %> days</strong></p>
+    <% end %>
+      <%= mail_to @game.user.email, "Contact Provider", class: "btn btn-secondary" %>
+      <%= link_to "More Games", user_games_path(@game.user), class: "btn btn-primary" %>
+    </div>
   </div>
-</div>
-
-<div class="d-grid gap-2">
-  <a class="btn btn-primary">Alquilar</a>
 </div>
