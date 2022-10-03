@@ -1,14 +1,20 @@
 <% desc = @game.description ? @game.description : '' %>
 <% img = @game.photo.attached? ? @game.photo.key : "defaultgame" %>
 <div class="row my-2 p-3">
-  <div class="col-6">
+  <div class="col-12 col-lg-6">
     <%= cl_image_tag img, width: 500, crop: :fill %>
   </div>
-   <div class="col-6">
-    <h2 class="mb-4"><strong><%= @game.name.capitalize %></strong><%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %></h2>
+   <div class="col-12 col-lg-6">
+    <h2 class="mb-4"><strong><%= @game.name.capitalize %></strong>
+    <% if policy(@game).edit? %>
+      <%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %>
+    <% end %>
+    </h2>
     <p class="py-3"><%= desc %></p>
     <% if @available == true %>
-      <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
+      <% if user_signed_in? && current_user.role == "customer" %>
+        <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
+      <% end %>
       <div class="text-end mt-5">
     <% else %>
       <div class="text-end mt-5">
