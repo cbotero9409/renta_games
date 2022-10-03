@@ -77,7 +77,7 @@ class GamesController < ApplicationController
     orders.each do |order|
       start = order.created_at
       endd = start + (order.days * 86_400)
-      diff = ((endd - Time.now) / 86_400).floor
+      diff = ((endd - Time.now) / 86_400).ceil
       return diff if endd >= Time.now
     end
     return true

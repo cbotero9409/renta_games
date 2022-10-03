@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     if current_user.role == "provider"
       @orders = provider_orders
     else
-      @orders = Order.all.order(created_at: :desc)
+      @orders = Order.where(user: current_user).order(created_at: :desc)
     end
   end
 

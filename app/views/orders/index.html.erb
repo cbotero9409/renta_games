@@ -3,7 +3,7 @@
   <% img = order.game.photo.attached? ? order.game.photo.key : "defaultgame" %>
   <% start = order.created_at %>
   <% endd = start + (order.days * 86400) %>
-  <% diff = "#{((endd - Time.now) / 86400).floor} days left" %>
+  <% diff = "#{((endd - Time.now) / 86400).ceil} days left" %>
 
   <% if endd <= Time.now %>
     <% opacity = 50 %>
