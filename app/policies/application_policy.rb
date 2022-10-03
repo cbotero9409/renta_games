@@ -36,6 +36,14 @@ class ApplicationPolicy
     false
   end
 
+  def user_games?
+    false
+  end
+
+  def create_order?
+    false
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

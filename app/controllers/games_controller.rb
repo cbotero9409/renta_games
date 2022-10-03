@@ -40,8 +40,8 @@ class GamesController < ApplicationController
   def show
     authorize @game
     @order = Order.new
+    @collection = [7, 15, 30, 60, 90, 180]
     if @game.orders.empty?
-      @collection = [7, 15, 30, 60, 90, 180]
       @available = true
     else
       @available = game_available(@game.orders)
@@ -51,15 +51,15 @@ class GamesController < ApplicationController
   def user_games
     @user = User.find(params[:id])
     @games = @user.games.order(created_at: :desc)
+    authorize @games
     @title = @user.name || @user.email
-    skip_authorization
   end
 
   def create_order
     @order = Order.new(order_params)
     @order.game = @game
     @order.user = current_user
-    skip_authorization
+    authorize @order
     if @order.save
       redirect_to orders_path
     else
