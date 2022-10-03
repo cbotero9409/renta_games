@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
     else
       @orders = Order.where(user: current_user).order(created_at: :desc)
     end
+    skip_policy_scope
+    skip_authorization
   end
 
   private

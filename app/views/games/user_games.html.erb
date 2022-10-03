@@ -1,4 +1,8 @@
-<h2 class="mb-5"><span class="me-4">Games (<%= @title %>) </span> <%= link_to "+ Add Game", new_game_path, class: "btn btn-primary" %></h2>
+<h2 class="mb-5"><span class="me-4">Games (<%= @title %>) </span>
+<% if policy(Game).new? && current_user == @user %>
+  <%= link_to "+ Add Game", new_game_path, class: "btn btn-primary" %>
+<% end %>
+</h2>
 <div class="cards my-3">
   <% @games.each do |game| %>
     <% opacity = 100 %>
