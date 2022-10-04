@@ -1,8 +1,9 @@
 // Specific CSS for your home-page
 body{
   // font-family: 'Arial Narrow', Arial, sans-serif;
-  // background: url(https://forums.pokemmo.com/uploads/monthly_2021_12/22b22287602523.5dbd29081561d.gif.12d41b841e6e1356e493e1b376ded418.gif);
+  // background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)), url(games_bg.jpg);
   background-size: cover;
+
 }
 
 a {
@@ -14,6 +15,7 @@ a {
     background-position: center;
     background-repeat: fixed;
     padding: 150px 0;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(videogames-controller-1920x1080-1.jpg);
   }
 
   .banner h1 {
