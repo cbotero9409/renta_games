@@ -60,7 +60,8 @@
 
 .card-product {
   overflow: hidden;
-  height: 120px;
+  height: 140px;
+  width: 700px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -71,7 +72,7 @@
 
 .card-product img {
   height: 100%;
-  width: 120px;
+  width: 150px;
   object-fit: cover;
 }
 
@@ -99,4 +100,6 @@
 
 .cards > a > p {
   width: 250px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px !important;
 }

@@ -19,9 +19,10 @@
         <h2 class="text-body"><%= order.game.name.capitalize %></h2>
         <p class="fs-6 text-body">Start date: <%= start.strftime("%d-%b-%Y") %></p>
         <p class="fs-6 text-body">End date: <%= endd.strftime("%d-%b-%Y") %></p>
-        <p><span class="text-muted"><%= diff %></span>
+        <p><span class="text-muted me-2"><%= diff %></span>
           <% if current_user.role == "provider" %>
-            <%= mail_to order.user.email, "Contact Customer", class: "px-3" %>
+          (<%= order.user.email %>)
+            <% mail_to order.user.email, "Contact Customer", class: "px-3" %>
           <% end %>
         </p>
       </div>
