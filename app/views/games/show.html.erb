@@ -2,7 +2,7 @@
 <% img = @game.photo.attached? ? @game.photo.key : "defaultgame" %>
 <div class="row my-2 p-3">
   <div class="col-12 col-lg-6">
-    <%= cl_image_tag img, width: 500, crop: :fill %>
+    <%= cl_image_tag img, width: 500, crop: :fill, class: "rounded" %>
   </div>
    <div class="col-12 col-lg-6">
     <h2 class="mb-4"><strong><%= @game.name.capitalize %></strong>

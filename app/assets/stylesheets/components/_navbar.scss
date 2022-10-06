@@ -1,6 +1,11 @@
+.navbar {
+  position: sticky;
+  top: 0;
+}
+
 .navbar-game {
   justify-content: space-between;
-  background: white;
+  background: #171212e3;
 }
 
 .navbar-game .navbar-collapse {
@@ -9,4 +14,12 @@
 
 .navbar-game .navbar-brand img {
   width: 50px;
+}
+
+.nav-link {
+  color: #e1dddd;
+  font-weight: bold;
+  &:hover {
+    color: white;
+  }
 }

@@ -13,7 +13,7 @@
   <% end %>
 
   <%= link_to game_path(order.game) do %>
-    <div class="mb-3 card-product opacity-<%= opacity %>">
+    <div class="mb-4 card-product opacity-<%= opacity %>">
       <%= cl_image_tag img %>
       <div class="card-product-infos position-relative">
         <h2 class="text-body"><%= order.game.name.capitalize %></h2>
