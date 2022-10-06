@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Video-Game-Controller-Icon-IDV-green.svg/1200px-Video-Game-Controller-Icon-IDV-green.svg.png">
+    <%= favicon_link_tag asset_path('control.png') %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
@@ -15,11 +15,14 @@
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <% unless current_page?(root_url)  %>
-      <div class="container p-3">
+      <div class="container p-3 my-5">
     <% else  %>
-      <div>
+      <div class="">
     <% end %>
     <%= yield %>
     </div>
+    <footer>
+      <%= render "shared/footer" %>
+    </footer>
   </body>
 </html>

@@ -21,12 +21,12 @@
 <% end %>
 
 <div class="container">
-  <div class="cards my-3">
+  <div class="cards my-5">
     <% @available.each do |game| %>
     <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
-      <%= link_to game_path(game) do %>
+    <%= link_to game_path(game), class: "unique-effect" do %>
         <div class="card-category opacity-100 shadow-lg" style="background-image: url('<%= cl_image_path img %>')"></div>
-        <p class="text-center fs-4 text-secondary"><%= game.name.capitalize %></p>
+        <p class="text-center fs-4 text-secondary bg-white shadow p-3 mb-5 bg-body"><%= game.name.capitalize %></p>
       <% end %>
     <% end %>
 

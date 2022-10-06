@@ -1,0 +1,31 @@
+.footer {
+  background:#1a0404;
+  display: flex;
+  flex-direction: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: auto;
+  padding: 38px 86px;
+  color: white;
+  border: solid rgba(11, 5, 5, 0.783) 4px;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 10px 10px;
+}
+.footer-links a:hover {
+  transform: scale(2.3);
+  cursor: pointer;
+}
+.footer-copyright{
+  flex-direction: column;
+}

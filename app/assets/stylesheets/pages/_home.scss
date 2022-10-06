@@ -3,7 +3,10 @@ body{
   // font-family: 'Arial Narrow', Arial, sans-serif;
   // background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)), url(games_bg.jpg);
   background-size: cover;
-
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 a {
@@ -31,4 +34,8 @@ a {
     color: white;
     opacity: .7;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .unique-effect:hover {
+    transform: scale(1.2)
   }
