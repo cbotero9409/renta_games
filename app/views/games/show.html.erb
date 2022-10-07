@@ -14,14 +14,15 @@
     <% if @available == true %>
       <% if user_signed_in? && current_user.role == "customer" %>
         <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
-      <% else %>
-        <p>Please <%= link_to "Login", new_user_session_path %> as a customer to rent a game</p>
       <% end %>
       <div class="text-end mt-5">
     <% else %>
       <div class="text-end mt-5">
         <p>Sorry, Game Available in <strong><%= @available %> days</strong></p>
     <% end %>
+      <% unless user_signed_in? %>
+        <%= link_to "Order Game", new_user_session_path, class: "btn btn-primary" %>
+      <% end %>
       <%= mail_to @game.user.email, "Contact Provider", class: "btn btn-secondary" %>
       <%= link_to "More Games", user_games_path(@game.user), class: "btn btn-primary" %>
     </div>
