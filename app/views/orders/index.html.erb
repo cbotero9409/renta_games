@@ -1,31 +1,33 @@
-<h2 class="mb-3">My Orders</h2>
-<% @orders.each do |order| %>
-  <% img = order.game.photo.attached? ? order.game.photo.key : "defaultgame" %>
-  <% start = order.created_at %>
-  <% endd = start + (order.days * 86400) %>
-  <% diff = "#{((endd - Time.now) / 86400).ceil} days left" %>
+<h2 class="mb-4">My Orders</h2>
+<div class="cards-2">
+  <% @orders.each do |order| %>
+    <% img = order.game.photo.attached? ? order.game.photo.key : "defaultgame" %>
+    <% start = order.created_at %>
+    <% endd = start + (order.days * 86400) %>
+    <% diff = "#{((endd - Time.now) / 86400).ceil} days left" %>
 
-  <% if endd <= Time.now %>
-    <% opacity = 50 %>
-    <% diff = "" %>
-  <% else %>
-    <% opacity = 100 %>
-  <% end %>
+    <% if endd <= Time.now %>
+      <% opacity = 50 %>
+      <% diff = "" %>
+    <% else %>
+      <% opacity = 100 %>
+    <% end %>
 
-  <%= link_to game_path(order.game) do %>
-    <div class="mb-4 card-product opacity-<%= opacity %>">
-      <%= cl_image_tag img %>
-      <div class="card-product-infos position-relative">
-        <h2 class="text-body"><%= order.game.name.capitalize %></h2>
-        <p class="fs-6 text-body">Start date: <%= start.strftime("%d-%b-%Y") %></p>
-        <p class="fs-6 text-body">End date: <%= endd.strftime("%d-%b-%Y") %></p>
-        <p><span class="text-muted me-2"><%= diff %></span>
-          <% if current_user.role == "provider" %>
-          (<%= order.user.email %>)
-            <% mail_to order.user.email, "Contact Customer", class: "px-3" %>
-          <% end %>
-        </p>
+    <%= link_to game_path(order.game) do %>
+      <div class="mb-4 card-product opacity-<%= opacity %>">
+        <%= cl_image_tag img %>
+        <div class="card-product-infos position-relative">
+          <h2 class="text-body"><%= order.game.name.capitalize %></h2>
+          <p class="fs-6 text-body">Start date: <%= start.strftime("%d-%b-%Y") %></p>
+          <p class="fs-6 text-body">End date: <%= endd.strftime("%d-%b-%Y") %></p>
+          <p><span class="text-muted me-2"><%= diff %></span>
+            <% if current_user.role == "provider" %>
+            (<%= order.user.email %>)
+              <% mail_to order.user.email, "Contact Customer", class: "px-3" %>
+            <% end %>
+          </p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

@@ -14,6 +14,8 @@
     <% if endd >= Time.now %>
       <% ava = false %>
       <% @unavailable << game %>
+      <% diff = ((endd - Time.now) / 86400).ceil %>
+      <% @days << diff %>
       <% break %>
     <% end %>
   <% end %>
@@ -30,11 +32,11 @@
       <% end %>
     <% end %>
 
-    <% @unavailable.each do |game| %>
+    <% @unavailable.each_with_index do |game, idx| %>
     <% img = game.photo.attached? ? game.photo.key : "defaultgame" %>
       <%= link_to game_path(game) do %>
-        <div class="card-category opacity-50 shadow-none" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img %>')"></div>
-        <p class="text-center text-muted"><%= game.name.capitalize %></p>
+        <div class="card-category opacity-50 shadow-none" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path img %>'); height: 230px;"></div>
+        <p class="text-center text-muted fs-3 bg-white shadow p-2 mb-5 bg-body"><%= game.name.capitalize %><br><small> (<%= "Available in #{@days[idx]} days" %></small>)</p>
       <% end %>
     <% end %>
   </div>

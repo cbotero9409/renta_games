@@ -1,11 +1,12 @@
 class GamesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: %i[index show user_games]
   before_action :set_game, only: %i[show edit update create_order]
 
   def index
     @games = policy_scope(Game)
     @unavailable = []
     @available = []
+    @days = []
   end
 
   def new

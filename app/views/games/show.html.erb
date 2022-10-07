@@ -14,6 +14,8 @@
     <% if @available == true %>
       <% if user_signed_in? && current_user.role == "customer" %>
         <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
+      <% else %>
+        <p>Please <%= link_to "Login", new_user_session_path %> as a customer to rent a game</p>
       <% end %>
       <div class="text-end mt-5">
     <% else %>
