@@ -22,9 +22,11 @@
           <p class="fs-6 text-body">End date: <%= endd.strftime("%d-%b-%Y") %></p>
           <p><span class="text-muted me-2"><%= diff %></span>
             <% if current_user.role == "provider" %>
-            (<%= order.user.email %>)
-              <% mail_to order.user.email, "Contact Customer", class: "px-3" %>
+              (<%= order.user.email %>)
+            <% else %>
+              (<%= order.game.user.email %>)
             <% end %>
+            <% mail_to order.user.email, "Contact Customer", class: "px-3" %>
           </p>
         </div>
       </div>
