@@ -5,7 +5,7 @@
     <%= cl_image_tag img, width: 500, crop: :fill, class: "rounded" %>
   </div>
    <div class="col-12 col-lg-6">
-    <h2 class="my-5 mb-4"><strong><%= @game.name.capitalize %></strong>
+    <h2 class="my-4"><strong><%= @game.name.capitalize %></strong>
     <% if policy(@game).edit? %>
       <%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %>
     <% end %>
