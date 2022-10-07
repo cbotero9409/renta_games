@@ -10,7 +10,7 @@
       <%= link_to raw("<i class='fa-solid fa-pencil mx-4'></i>"), edit_game_path(@game) %>
     <% end %>
     </h2>
-    <p class="py-3 fs-5"><%= desc %></p>
+    <p class="py-3"><%= desc %></p>
     <% if @available == true %>
       <% if user_signed_in? && current_user.role == "customer" %>
         <%= render "/orders/form", game: @game, order: @order, collection: @collection %>
